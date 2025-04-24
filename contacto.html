@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto - Cookie Dookie Bites</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #ede7f6;
+      margin: 0;
+      padding: 0;
+    }
+    header, footer {
+      background-color: #c1a3e5;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+    }
+    .logo img {
+      height: 70px;
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #4b3c64;
+      font-weight: bold;
+    }
+    main {
+      padding: 40px 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #9a73c8;
+      margin-bottom: 20px;
+    }
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-family: 'Montserrat', sans-serif;
+    }
+    button {
+      background-color: #9a73c8;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .mensaje-exito {
+      margin-top: 20px;
+      color: #6a54a0;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><img src="cookie.png" alt="Cookie Dookie Bites"></div>
+    <nav>
+      <a href="HTML.html">INICIO</a>
+      <a href="carrito.html">CARRITO</a>
+      <a href="preorden.html">PRE ORDEN</a>
+      <a href="nosotros.html">NOSOTROS</a>
+      <a href="contacto.html" style="text-decoration: underline;">CONTACTO</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Contáctanos</h1>
+    <form onsubmit="mostrarMensaje(event)">
+      <input type="text" placeholder="Nombre" required>
+      <input type="email" placeholder="Correo electrónico" required>
+      <textarea rows="5" placeholder="Tu mensaje..." required></textarea>
+      <button type="submit">Enviar</button>
+      <p id="mensaje-exito" class="mensaje-exito" style="display:none;">¡Gracias por contactarte con nosotros!</p>
+    </form>
+  </main>
+
+  <footer>
+    <div>
+      <div class="redes" align: right>
+        <span>SÍGUENOS: </span>
+        <a href="https://web.whatsapp.com/">WhatsApp</a> |
+        <a href="https://www.facebook.com/">Facebook</a> |
+        <a href="https://www.instagram.com/#">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    function mostrarMensaje(e) {
+      e.preventDefault();
+      document.getElementById('mensaje-exito').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

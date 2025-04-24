@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cookie Dookie Bites</title>
+  <link rel="stylesheet" href="css2.css" />
+</head>
+<body>
+  <header class="encabezado">
+    <div class="usuario">
+      <img src="usuario2.png" width="400" height="75" alt="Logo" class="avatar">
+      <span>DANNA PALACIOS</span>
+    </div>
+    <div class="logo-central">
+      <img src="Cookie Dookie Web.png" alt="Logo" class="logo">
+    </div>
+    <nav>
+      <a href="#">INICIO</a>
+      <a href="Carrito.html">CARRITO</a>
+      <a href="#">PRE ORDEN</a>
+      <a href="#">NOSOTROS</a>
+      <a href="#">CONTACTO</a>
+    </nav>
+  </header>
+
+  <section class="busqueda">
+    <h2>SABORES DE TEMPORADA</h2>
+    <input type="text" placeholder="Search" />
+  </section>
+
+  <section class="productos">
+    <div class="producto">
+      <img src="RED VELVET1.jpg" alt="Red Velvet">
+      <p class="nombre">Red Velvet Cookie</p>
+      <p class="precio">$15.00</p>
+    </div>
+    <div class="producto">
+      <img src="galleta m&m.jpg" alt="M&M Cookie">
+      <p class="nombre">M&M Cookie</p>
+      <p class="precio">$15.00</p>
+      <button onclick="agregarAlCarrito('M&M Cookie', 15)">🛍️ add</button>
+    </div>
+    <div class="producto">
+      <img src="BIRTHDAY.jpg" alt="Birthday Cookie">
+      <p class="nombre">Birthday Cookie</p>
+      <p class="precio">$15.00</p>
+      <button onclick="agregarAlCarrito('Birthday Cookie', 15)">🛍️ add</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>SÍGUENOS</p>
+    <div class="redes">
+      <a href="#">WhatsApp</a>
+      <a href="#">Facebook</a>
+      <a href="#">Instagram</a>
+    </div>
+  </footer>
+
+  <script src="inicio.js"></script>
+</body>
+</html>

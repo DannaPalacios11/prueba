@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie Dookie Bites - Cobro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #efe7fc;
+      margin: 0;
+      padding: 0;
+      color: #4b3c64;
+    }
+
+    header, footer {
+      background-color: #d2c2f0;
+      padding: 10px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header img {
+      height: 80px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #4b3c64;
+      font-weight: bold;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #6a54a0;
+    }
+
+    .contenido {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .producto {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+    }
+
+    .total {
+      text-align: right;
+      font-size: 1.5rem;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #6a54a0;
+    }
+
+    .confirmar {
+      background-color: #6a54a0;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: block;
+      margin: 30px auto 0;
+      transition: background 0.3s ease;
+    }
+
+    .confirmar:hover {
+      background-color: #4b3c64;
+    }
+
+    .formulario-pago {
+      margin-top: 30px;
+    }
+
+    .formulario-pago input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .mensaje-confirmacion {
+      text-align: center;
+      font-size: 1.2rem;
+      color: green;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .redes {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .redes a {
+      color: #4b3c64;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="cookie.png" alt="Logo Cookie Dookie Bites">
+    <nav>
+      <a href="HTML.html">INICIO</a>
+      <a href="carrito.html">CARRITO</a>
+      <a href="preorden.html">PRE ORDEN</a>
+      <a href="nosotros.html">NOSOTROS</a>
+      <a href="contacto.html">CONTACTO</a>
+    </nav>
+  </header>
+
+  <div class="contenido">
+    <h1>Resumen de tu compra</h1>
+    <div id="resumen"></div>
+    <div class="total">TOTAL: <span id="totalFinal">$0.00</span></div>
+
+    <h2>Información de Pago</h2>
+    <div class="formulario-pago">
+      <input type="text" placeholder="Nombre en la tarjeta" id="nombreTarjeta">
+      <input type="text" placeholder="Número de tarjeta" id="numeroTarjeta" maxlength="19">
+      <input type="text" placeholder="Fecha de vencimiento (MM/AA)" id="fechaVencimiento">
+      <input type="text" placeholder="Código de seguridad (CVV)" id="cvv" maxlength="3">
+    </div>
+
+    <button class="confirmar" onclick="confirmarCompra()">Confirmar pago</button>
+    <div id="mensajeConfirmacion" class="mensaje-confirmacion" style="display: none;">¡Compra confirmada! Gracias por tu pedido.</div>
+  </div>
+
+  <footer>
+    <div>
+      <div class="redes" align: right>
+        <span>SÍGUENOS: </span>
+        <a href="https://web.whatsapp.com/">WhatsApp</a> |
+        <a href="https://www.facebook.com/">Facebook</a> |
+        <a href="https://www.instagram.com/#">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.onload = function() {
+      const resumenContainer = document.getElementById('resumen');
+      const totalFinal = document.getElementById('totalFinal');
+      const carrito = JSON.parse(localStorage.getItem('preorden')) || [];
+      const bolsa = JSON.parse(localStorage.getItem('bolsaRegalo')) || false;
+      let total = 0;
+
+      carrito.forEach(producto => {
+        if (producto.cantidad > 0) {
+          const item = document.createElement('div');
+          item.className = 'producto';
+          item.innerHTML = `
+            <span>${producto.nombre} x${producto.cantidad}</span>
+            <span>$${(producto.precio * producto.cantidad).toFixed(2)}</span>
+          `;
+          resumenContainer.appendChild(item);
+          total += producto.precio * producto.cantidad;
+        }
+      });
+
+      if (bolsa) {
+        const bolsaItem = document.createElement('div');
+        bolsaItem.className = 'producto';
+        bolsaItem.innerHTML = `
+          <span>Bolsa de regalo</span>
+          <span>$10.00</span>
+        `;
+        resumenContainer.appendChild(bolsaItem);
+        total += 10;
+      }
+
+      totalFinal.textContent = `$${total.toFixed(2)}`;
+    }
+
+    function confirmarCompra() {
+      const nombre = document.getElementById('nombreTarjeta').value.trim();
+      const numero = document.getElementById('numeroTarjeta').value.trim();
+      const vencimiento = document.getElementById('fechaVencimiento').value.trim();
+      const cvv = document.getElementById('cvv').value.trim();
+
+      if (!nombre || !numero || !vencimiento || !cvv) {
+        alert('Por favor completa todos los campos de información de pago.');
+        return;
+      }
+
+      document.getElementById('mensajeConfirmacion').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

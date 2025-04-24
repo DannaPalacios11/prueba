@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pre Orden - Cookie Dookie Bites</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #ede7f6;
+      margin: 0;
+      padding: 0;
+    }
+    header, footer {
+      background-color: #c1a3e5;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+    }
+    .logo img {
+      height: 70px;
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #4b3c64;
+      font-weight: bold;
+    }
+    h1 {
+      text-align: center;
+      color: #9a73c8;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+    .producto {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 280px;
+      padding: 15px;
+      text-align: center;
+    }
+    .producto img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .cantidad {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0;
+    }
+    .cantidad button {
+      background-color: #9a73c8;
+      border: none;
+      color: white;
+      font-size: 20px;
+      padding: 5px 15px;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+    .resumen {
+      text-align: center;
+      padding: 20px;
+    }
+    .resumen input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    .total {
+      font-size: 2rem;
+      color: #6a54a0;
+      font-weight: bold;
+    }
+    .boton-pago {
+      background-color: #9a73c8;
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><img src="cookie.png" alt="Cookie Dookie Bites" /></div>
+    <nav>
+      <a href="HTML.html">INICIO</a>
+      <a href="carrito.html">CARRITO</a>
+      <a href="preorden.html" style="text-decoration: underline;">PRE ORDEN</a>
+      <a href="nosotros.html">NOSOTROS</a>
+      <a href="contacto.html">CONTACTO</a>
+    </nav>
+  </header>
+
+  <h1>PRE ORDEN</h1>
+  <div class="container" id="lista-productos"></div>
+
+  <div class="resumen">
+    <label><input type="checkbox" id="bolsa"> BOLSA DE REGALO</label>
+    <p class="total">TOTAL: $<span id="total">0.00</span></p>
+    <button class="boton-pago" onclick="irAPagar()">IR A PAGAR</button>
+  </div>
+
+  <footer>
+    <div>
+      <div class="redes" align: right>
+        <span>SÍGUENOS: </span>
+        <a href="https://web.whatsapp.com/">WhatsApp</a> |
+        <a href="https://www.facebook.com/">Facebook</a> |
+        <a href="https://www.instagram.com/#">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    const productos = [
+      { nombre: 'Red Velvet Cookie', precio: 15.00, imagen: 'RED VELVET1.jpg', cantidad: 0 },
+      { nombre: 'M&M Cookie', precio: 15.00, imagen: 'galleta m&m.jpg', cantidad: 0 },
+      { nombre: 'Birthday Cookie', precio: 15.00, imagen: 'BIRTHDAY.jpg', cantidad: 0 },
+      { nombre: 'Oreo Cookie', precio: 15.00, imagen: 'Decadent Oreo-Stuffed Chocolate Chip Cookies Recipe.jpg', cantidad: 0 }
+    ];
+
+    const lista = document.getElementById('lista-productos');
+    const totalSpan = document.getElementById('total');
+    const bolsa = document.getElementById('bolsa');
+
+    productos.forEach((p, index) => {
+      const div = document.createElement('div');
+      div.className = 'producto';
+      div.innerHTML = `
+        <img src="${p.imagen}" alt="${p.nombre}" />
+        <h3>${p.nombre}</h3>
+        <p><strong>$${p.precio.toFixed(2)}</strong></p>
+        <div class="cantidad">
+          <button onclick="cambiarCantidad(${index}, -1)">−</button>
+          <span id="cantidad-${index}">0</span>
+          <button onclick="cambiarCantidad(${index}, 1)">+</button>
+        </div>
+      `;
+      lista.appendChild(div);
+    });
+
+    function cambiarCantidad(index, delta) {
+      productos[index].cantidad += delta;
+      if (productos[index].cantidad < 0) productos[index].cantidad = 0;
+      document.getElementById(`cantidad-${index}`).textContent = productos[index].cantidad;
+      calcularTotal();
+    }
+
+    function calcularTotal() {
+      let total = productos.reduce((sum, p) => sum + p.precio * p.cantidad, 0);
+      if (bolsa.checked) total += 10;
+      totalSpan.textContent = total.toFixed(2);
+    }
+
+    bolsa.addEventListener('change', calcularTotal);
+
+    function irAPagar() {
+      const totalFinal = parseFloat(totalSpan.textContent);
+      localStorage.setItem('preorden', JSON.stringify(productos));
+      localStorage.setItem('bolsaRegalo', bolsa.checked);
+      localStorage.setItem('totalPago', totalFinal.toFixed(2));
+      window.location.href = 'carrito.html';
+    }
+  </script>
+</body>
+</html>

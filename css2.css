@@ -1,0 +1,119 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f3ebff;
+  color: #4b3c64;
+}
+
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #e6dcf9;
+}
+
+.usuario {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.usuario .avatar {
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.logo-central {
+  text-align: center;
+}
+
+.logo-central .logo {
+  height: 80px;
+}
+
+.logo-central h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.logo-central span {
+  color: #9a73c8;
+}
+
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #5c3a90;
+  font-weight: bold;
+}
+
+.busqueda {
+  text-align: center;
+  padding: 20px;
+  background-image: url('cookies.jpg'); /* Cambia por tu imagen */
+  background-size: cover;
+  color: white;
+}
+
+.busqueda input {
+  margin-top: 10px;
+  padding: 10px;
+  width: 50%;
+  border-radius: 30px;
+  border: none;
+  text-align: center;
+}
+
+.productos {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.producto {
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  margin: 15px;
+  width: 200px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.producto img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.producto .precio {
+  font-weight: bold;
+}
+
+.producto button {
+  background-color: #9a73c8;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.producto button:hover {
+  background-color: #5c3a90;
+}
+
+footer {
+  background-color: #9a73c8;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+}
+
+.redes a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+}

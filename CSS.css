@@ -1,0 +1,110 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #EDE6F5;
+    color: #4B3F72;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+}
+
+.logo img {
+    height: 100px;
+}
+
+nav a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #4B3F72;
+    font-weight: bold;
+}
+
+.banner {
+    background: url('cookies.jpg') no-repeat center/cover;
+    color: #4B3F72;
+    text-align: center;
+    padding: 100px 0;
+}
+
+
+.banner h2 {
+    font-size: 3rem;
+}
+
+.banner input {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 20px;
+    width: 300px;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.menu button {
+    background-color: #D1B3FF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.menu .active {
+    background-color: #9370DB;
+    color: white;
+}
+
+.productos {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.producto {
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 15px;
+    width: 200px;
+}
+
+
+.producto img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.add-btn {
+    background-color: #9370DB;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #9370DB;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+footer .redes a {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
